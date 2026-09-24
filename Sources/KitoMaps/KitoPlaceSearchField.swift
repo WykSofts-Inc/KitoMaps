@@ -119,7 +119,7 @@ public struct KitoPlaceSearchField: View {
                             }
                         }
                         Spacer(minLength: 0)
-                        Image(systemName: "arrow.up.left").font(.caption.weight(.semibold)).foregroundStyle(theme.colors.onSurface.opacity(0.3))
+                        Image(systemName: "arrow.up.backward").font(.caption.weight(.semibold)).foregroundStyle(theme.colors.onSurface.opacity(0.3))
                     }
                     .padding(.horizontal, theme.spacing.lg)
                     .padding(.vertical, theme.spacing.md)

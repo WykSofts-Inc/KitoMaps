@@ -145,6 +145,12 @@ KitoMapGeometry.distance(from: a, to: b)      // metres
 KitoMapGeometry.bearing(from: a, to: b)       // degrees
 ```
 
+## Right-to-left
+
+Cards, the carousel, search and map chrome mirror automatically, and the search suggestion arrow follows the reading direction.
+The map itself, routes, pins and heading cones stay physical, so compass headings point the right way in right-to-left layouts.
+Nothing extra is needed from the app.
+
 ## Migrating from 0.1
 
 0.2.0 renames `KitoRoute` (the directions result from `KitoRouteService`) to `KitoMapRoute`, so
