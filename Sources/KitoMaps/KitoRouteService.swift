@@ -9,7 +9,7 @@
 import MapKit
 
 /// A route between two places: the line to draw, how far and how long.
-public struct KitoRoute: Sendable {
+public struct KitoMapRoute: Sendable {
     public var coordinates: [CLLocationCoordinate2D]
     /// Metres.
     public var distance: CLLocationDistance
@@ -59,7 +59,7 @@ public enum KitoRouteService {
 
     /// The fastest route, or the first of `alternatives` if asked for.
     public static func route(from origin: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D,
-                             transport: KitoTransport = .automobile) async throws -> KitoRoute {
+                             transport: KitoTransport = .automobile) async throws -> KitoMapRoute {
         guard let first = try await routes(from: origin, to: destination, transport: transport, alternatives: false).first else {
             throw Failure.noRoute
         }
@@ -68,7 +68,7 @@ public enum KitoRouteService {
 
     /// Every route Apple Maps suggests, fastest first.
     public static func routes(from origin: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D,
-                              transport: KitoTransport = .automobile, alternatives: Bool = true) async throws -> [KitoRoute] {
+                              transport: KitoTransport = .automobile, alternatives: Bool = true) async throws -> [KitoMapRoute] {
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: origin))
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
@@ -77,8 +77,8 @@ public enum KitoRouteService {
         let response = try await MKDirections(request: request).calculate()
         return response.routes
             .sorted { $0.expectedTravelTime < $1.expectedTravelTime }
-            .map { KitoRoute(coordinates: $0.polyline.coordinates, distance: $0.distance,
-                             expectedTravelTime: $0.expectedTravelTime, name: $0.name) }
+            .map { KitoMapRoute(coordinates: $0.polyline.coordinates, distance: $0.distance,
+                                expectedTravelTime: $0.expectedTravelTime, name: $0.name) }
     }
 }
 

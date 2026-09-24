@@ -55,7 +55,7 @@ public struct KitoMapOverlay: Identifiable, Equatable, Sendable {
     }
 
     /// A route from `KitoRouteService`.
-    public static func route(_ route: KitoRoute, id: String = "route", color: Color = .blue, lineWidth: CGFloat = 6) -> KitoMapOverlay {
+    public static func route(_ route: KitoMapRoute, id: String = "route", color: Color = .blue, lineWidth: CGFloat = 6) -> KitoMapOverlay {
         .polyline(route.coordinates, id: id, color: color, lineWidth: lineWidth)
     }
 
