@@ -171,6 +171,8 @@ public struct KitoMapPinView: View {
                                          startRadius: core * 0.3, endRadius: core * 1.2))
                     .frame(width: core * 2.4, height: core * 2.4)
                     .rotationEffect(.degrees(heading))
+                    // Compass headings are physical; rotation would run backwards in right-to-left layouts.
+                    .environment(\.layoutDirection, .leftToRight)
             }
             Circle()
                 .fill(tint.opacity(animates ? (pulsing ? 0 : 0.35) : 0.18))
