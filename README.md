@@ -143,6 +143,13 @@ KitoMapGeometry.distance(from: a, to: b)      // metres
 KitoMapGeometry.bearing(from: a, to: b)       // degrees
 ```
 
+## Migrating from 0.1
+
+0.2.0 renames `KitoRoute` (the directions result from `KitoRouteService`) to `KitoMapRoute`, so
+KitoMaps can be imported next to KitoNavigation, whose `KitoRoute` is the router protocol, without
+"ambiguous" errors. Its properties are unchanged. If you use KitoMapsGoogle or KitoMapsLibre,
+update them to 0.2.0 at the same time.
+
 ## Info.plist
 
 Add `NSLocationWhenInUseUsageDescription` if you show the user's location, the locate button or the
@@ -151,7 +158,7 @@ picker's "use my location".
 ## Installation
 
 ```swift
-.package(url: "https://github.com/WykSofts-Inc/KitoMaps.git", from: "0.1.0")
+.package(url: "https://github.com/WykSofts-Inc/KitoMaps.git", from: "0.2.0")
 ```
 
 iOS 17+. Depends on [KitoCore](https://github.com/WykSofts-Inc/KitoCore) for theming.
